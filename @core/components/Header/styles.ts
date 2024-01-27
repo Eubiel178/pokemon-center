@@ -29,8 +29,7 @@ export const Container = styled.header`
 `;
 
 export const Content = styled.div`
-  max-width: 1440px;
-  width: 85vw;
+  width: var(--content-width);
 
   display: flex;
   justify-content: space-between;
