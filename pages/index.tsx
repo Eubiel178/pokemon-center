@@ -1,4 +1,4 @@
-import { SectionContent } from "@/@core/presentation/Home/SectionContent";
+import { SectionContent } from "@/@core/presentation/home/SectionContent";
 
 const Home = () => {
   return (
