@@ -1,5 +1,11 @@
+import { SectionContent } from "@/@core/presentation/Home/SectionContent";
+
 const Home = () => {
-  return <></>;
+  return (
+    <>
+      <SectionContent />
+    </>
+  );
 };
 
 export default Home;
