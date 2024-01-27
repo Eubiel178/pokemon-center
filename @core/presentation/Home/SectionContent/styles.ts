@@ -11,7 +11,7 @@ export const Container = styled.section`
       rgba(0, 0, 0, 0.4) 0%,
       rgba(0, 0, 0, 0.4) 100%
     ),
-    url("/images/pokemon-hero.jpg") lightgray 0px 0px / 100% 100%no-repeat;
+    url("/images/pokemon-hero.jpg") lightgray 0px 0px / 100% 100% no-repeat;
 `;
 
 export const Text = styled.p`
