@@ -21,7 +21,7 @@ const retractAnimation = keyframes`
 `;
 
 export const Container = styled.header`
-  height: 6.5rem;
+  height: 6rem;
 
   display: flex;
   justify-content: center;
