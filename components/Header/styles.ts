@@ -21,7 +21,20 @@ const retractAnimation = keyframes`
 `;
 
 export const Header = styled.header`
+  height: 6.5rem;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const HeaderContent = styled.div`
+  max-width: 1440px;
+  width: 80vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const TitleContainer = styled.div`
@@ -34,10 +47,9 @@ export const TitleContainer = styled.div`
   background-color: ${(props) => props.theme.colors.primary};
 
   height: 3.8125rem;
-  width: 13.75rem;
+  width: 3.125rem;
 
   overflow: hidden;
-  width: 3.125rem;
   transition: width 0.5s ease-in-out;
   animation: ${extendAnimation} 5s, ${retractAnimation} 0.5s 5s;
 
