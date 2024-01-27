@@ -4,8 +4,8 @@ import { NavBar } from "./NavBar";
 
 export const Header = () => {
   return (
-    <S.Header>
-      <S.HeaderContent>
+    <S.Container>
+      <S.Content>
         <S.TitleContainer>
           <Image
             src="/images/white-pokeball.svg"
@@ -18,7 +18,7 @@ export const Header = () => {
         </S.TitleContainer>
 
         <NavBar />
-      </S.HeaderContent>
-    </S.Header>
+      </S.Content>
+    </S.Container>
   );
 };

@@ -20,7 +20,7 @@ const retractAnimation = keyframes`
   }
 `;
 
-export const Header = styled.header`
+export const Container = styled.header`
   height: 6.5rem;
 
   display: flex;
@@ -28,7 +28,7 @@ export const Header = styled.header`
   align-items: center;
 `;
 
-export const HeaderContent = styled.div`
+export const Content = styled.div`
   max-width: 1440px;
   width: 85vw;
 
