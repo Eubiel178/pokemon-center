@@ -1,9 +1,9 @@
-import { SectionContent } from "@/@core/presentation/home/SectionContent";
+import { ContentPresentation } from "@/@core/presentation/home";
 
 const Home = () => {
   return (
     <>
-      <SectionContent />
+      <ContentPresentation />
     </>
   );
 };

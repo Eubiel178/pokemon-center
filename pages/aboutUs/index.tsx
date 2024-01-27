@@ -1,5 +1,11 @@
+import { ContentPresentation } from "@/@core/presentation/aboutUs";
+
 const AboutUs = () => {
-  return <></>;
+  return (
+    <>
+      <ContentPresentation />
+    </>
+  );
 };
 
 export default AboutUs;
