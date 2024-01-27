@@ -30,7 +30,7 @@ export const Header = styled.header`
 
 export const HeaderContent = styled.div`
   max-width: 1440px;
-  width: 80vw;
+  width: 85vw;
 
   display: flex;
   justify-content: space-between;
