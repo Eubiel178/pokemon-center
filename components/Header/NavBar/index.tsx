@@ -6,11 +6,11 @@ export const NavBar = () => {
     <S.NavBar>
       <S.NavList>
         <S.NavItem>
-          <Link href="/schedule-appointment">Quem Somos</Link>
+          <Link href="/aboutUs">Quem Somos</Link>
         </S.NavItem>
 
         <S.NavItemHighlight>
-          <Link href="/about-us">Agendar Consulta</Link>
+          <Link href="/scheduleAppointment">Agendar Consulta</Link>
         </S.NavItemHighlight>
       </S.NavList>
     </S.NavBar>
