@@ -1,4 +1,5 @@
 import { InfoBox } from "@/@core/components/InfoBox";
+import { CardList } from "./CardList";
 
 export const AboutUsPresentation = () => {
   return (
@@ -10,6 +11,8 @@ export const AboutUsPresentation = () => {
 
         <InfoBox.Text>A maior rede de tratamento pokémon.</InfoBox.Text>
       </InfoBox.Root>
+
+      <CardList />
     </section>
   );
 };
