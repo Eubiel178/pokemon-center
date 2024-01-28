@@ -1,6 +1,7 @@
 import Image from "next/image";
 import * as S from "./styles";
 import { NavBar } from "./NavBar";
+import Link from "next/link";
 
 export const Header = () => {
   return (
@@ -14,7 +15,9 @@ export const Header = () => {
             height={34}
           />
 
-          <S.Title>Centro Pokémon</S.Title>
+          <S.Title>
+            <Link href="/">Centro Pokémon</Link>
+          </S.Title>
         </S.TitleContainer>
 
         <NavBar />

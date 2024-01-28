@@ -58,8 +58,12 @@ export const TitleContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: #fff;
   font-size: 1.25rem;
   font-weight: 600;
   white-space: nowrap;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
 `;
