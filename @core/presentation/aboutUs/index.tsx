@@ -1,9 +1,10 @@
+import * as S from "./styles";
 import { InfoBox } from "@/@core/components/InfoBox";
 import { CardList } from "./CardList";
 
 export const AboutUsPresentation = () => {
   return (
-    <section>
+    <S.Container>
       <InfoBox.Root>
         <InfoBox.CurrentRoute />
 
@@ -13,6 +14,6 @@ export const AboutUsPresentation = () => {
       </InfoBox.Root>
 
       <CardList />
-    </section>
+    </S.Container>
   );
 };

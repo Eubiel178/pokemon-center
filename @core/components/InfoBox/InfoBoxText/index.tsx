@@ -1,5 +1,5 @@
-import { Text } from "./styles";
+import * as S from "./styles";
 
 export const InfoBoxText = ({ children }: React.ComponentProps<"p">) => {
-  return <Text>{children}</Text>;
+  return <S.Text>{children}</S.Text>;
 };

@@ -1,5 +1,5 @@
+import * as S from "./styles";
 import { useRouter } from "next/router";
-import { Text } from "./styles";
 
 export const InfoBoxCurrentRoute = () => {
   const routeNames: Record<string, string> = {
@@ -12,5 +12,5 @@ export const InfoBoxCurrentRoute = () => {
   const currentRoute = router.pathname.split("/")[1];
   const currentRouteName = routeNames[currentRoute];
 
-  return <Text>{currentRouteName}</Text>;
+  return <S.Text>{currentRouteName}</S.Text>;
 };

@@ -1,12 +1,12 @@
+import * as S from "./styles";
 import { Header, Footer } from "@/@core/components";
-import { MainContainer } from "./styles";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
 
-      <MainContainer>{children}</MainContainer>
+      <S.MainContainer>{children}</S.MainContainer>
       <Footer />
     </>
   );
