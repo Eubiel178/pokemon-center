@@ -6,9 +6,9 @@ export const ContentPresentation = () => {
       <InfoBox.Root>
         <InfoBox.CurrentRoute />
 
-        <InfoBox.Title></InfoBox.Title>
+        <InfoBox.Title>Quem Somos</InfoBox.Title>
 
-        <InfoBox.Text></InfoBox.Text>
+        <InfoBox.Text>A maior rede de tratamento pokémon.</InfoBox.Text>
       </InfoBox.Root>
     </section>
   );
