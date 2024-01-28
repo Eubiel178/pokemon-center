@@ -9,10 +9,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #__next{
-    height: 100dvh;
-    height: 100vh;
+    min-height: 100dvh;
+    min-height: 100vh;
 
     display: flex;
+    justify-content: stretch;
     flex-direction: column;
   }
 
