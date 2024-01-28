@@ -6,7 +6,7 @@ export const NavList = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
+  gap: 1.875rem;
 `;
 
 export const NavItem = styled.li`
@@ -17,8 +17,8 @@ export const NavItem = styled.li`
 `;
 
 export const NavItemHighlight = styled(NavItem)`
-  border-radius: 30px;
-  padding: 7px 13px;
+  border-radius: 1.875rem;
+  padding: 0.4375rem 0.8125rem;
 
   background-color: ${(props) => props.theme.colors.primary};
 
