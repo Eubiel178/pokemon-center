@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 
 const extendAnimation = keyframes`
@@ -55,6 +56,11 @@ export const TitleContainer = styled.div`
   &:hover {
     width: 13.75rem;
   }
+`;
+
+export const Logo = styled(Image)`
+  width: 2.3125rem;
+  height: 2.125rem;
 `;
 
 export const Title = styled.h1`

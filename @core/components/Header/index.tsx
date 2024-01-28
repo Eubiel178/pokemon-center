@@ -1,4 +1,3 @@
-import Image from "next/image";
 import * as S from "./styles";
 import { NavBar } from "./NavBar";
 import Link from "next/link";
@@ -8,7 +7,7 @@ export const Header = () => {
     <S.Container>
       <S.Content>
         <S.TitleContainer>
-          <Image
+          <S.Logo
             src="/images/white-pokeball.svg"
             alt="logo"
             width={37}
