@@ -15,4 +15,10 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
+
+  h2{
+    color: #FFF;
+    font-size: 2rem;
+    font-weight: 700;
+  }
 `;

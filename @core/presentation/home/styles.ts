@@ -14,13 +14,9 @@ export const Container = styled.section`
     url("/images/pokemon-hero.jpg") lightgray 0px 0px / 100% 100% no-repeat;
 `;
 
-export const Text = styled.p`
+export const Title = styled.h2`
+  text-align: center;
   max-width: 27.625rem;
   width: 100%;
   padding: 0 25px;
-
-  color: #fff;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
 `;
