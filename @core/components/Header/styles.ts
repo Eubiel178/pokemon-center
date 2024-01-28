@@ -39,10 +39,10 @@ export const Content = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding-left: 12px;
+  gap: 0.9375rem;
+  padding-left: 0.75rem;
 
-  border-radius: 50px;
+  border-radius: 3.125rem;
   background-color: ${(props) => props.theme.colors.primary};
 
   height: 3.8125rem;

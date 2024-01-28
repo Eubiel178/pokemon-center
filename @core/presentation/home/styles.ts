@@ -18,5 +18,5 @@ export const Title = styled.h2`
   text-align: center;
   max-width: 27.625rem;
   width: 100%;
-  padding: 0 25px;
+  padding: 0 1.5625rem;
 `;

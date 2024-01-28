@@ -9,7 +9,7 @@ export const AboutUsPresentation = () => {
 
         <InfoBox.Title>Quem Somos</InfoBox.Title>
 
-        <InfoBox.Text>A maior rede de tratamento pokémon.</InfoBox.Text>
+        <InfoBox.Text>A maior rede de tratamento pokémon</InfoBox.Text>
       </InfoBox.Root>
 
       <CardList />

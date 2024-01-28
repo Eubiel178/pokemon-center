@@ -4,9 +4,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 0.9375rem;
 
-  padding: 30px 0 60px;
+  padding: 1.875rem 0 3.75rem;
 
   color: #000;
 `;
@@ -24,7 +24,7 @@ export const List = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 0.9375rem;
 
   width: var(--content-width);
 `;
@@ -32,7 +32,7 @@ export const List = styled.ul`
 export const Card = styled.li`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 0.9375rem;
 
   width: 100%;
   max-width: 25.625rem;
