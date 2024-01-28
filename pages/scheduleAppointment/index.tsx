@@ -1,5 +1,7 @@
+import { ScheduleAppointmentPresentation } from "@/@core/presentation/scheduleAppointment";
+
 const ScheduleAppointment = () => {
-  return;
+  return <ScheduleAppointmentPresentation />;
 };
 
 export default ScheduleAppointment;
