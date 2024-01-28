@@ -3,14 +3,18 @@ import { cardsData } from "@/data/aboutUsContent";
 
 export const CardList = () => {
   return (
-    <S.List>
-      {cardsData.map((element, index) => (
-        <S.Card key={element.key}>
-          <h4>{element.title}</h4>
+    <S.Container>
+      <S.Title>O Centro Pokémon</S.Title>
 
-          <p>{element.description}</p>
-        </S.Card>
-      ))}
-    </S.List>
+      <S.List>
+        {cardsData.map((element, index) => (
+          <S.Card key={element.key}>
+            <S.CardTitle>{element.title}</S.CardTitle>
+
+            <S.CardText>{element.description}</S.CardText>
+          </S.Card>
+        ))}
+      </S.List>
+    </S.Container>
   );
 };

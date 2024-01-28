@@ -7,9 +7,6 @@ export const NavList = styled.ul`
   justify-content: space-between;
   align-items: center;
   gap: 30px;
-
-  font-size: 0.875rem;
-  font-weight: 400;
 `;
 
 export const NavItem = styled.li`
