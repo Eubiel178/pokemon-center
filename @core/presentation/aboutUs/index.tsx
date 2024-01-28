@@ -1,6 +1,6 @@
 import { InfoBox } from "@/@core/components/InfoBox";
 
-export const ContentPresentation = () => {
+export const AboutUsPresentation = () => {
   return (
     <section>
       <InfoBox.Root>

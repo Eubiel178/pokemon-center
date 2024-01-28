@@ -1,9 +1,9 @@
-import { ContentPresentation } from "@/@core/presentation/aboutUs";
+import { AboutUsPresentation } from "@/@core/presentation/aboutUs";
 
 const AboutUs = () => {
   return (
     <>
-      <ContentPresentation />
+      <AboutUsPresentation />
     </>
   );
 };
