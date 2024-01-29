@@ -1,9 +1,9 @@
-import { HomePresentation } from "@/@core/presentation/home";
+import { HomeTemplate } from "@/components/templates/home";
 
 const Home = () => {
   return (
     <>
-      <HomePresentation />
+      <HomeTemplate />
     </>
   );
 };

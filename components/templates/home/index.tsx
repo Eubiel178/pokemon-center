@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-export const HomePresentation = () => {
+export const HomeTemplate = () => {
   return (
     <S.Container>
       <S.Title>

@@ -37,24 +37,29 @@ export const Content = styled.div`
   align-items: center;
 `;
 
-export const TitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.9375rem;
-  padding-left: 0.75rem;
+export const Title = styled.h1`
+  a {
+    text-decoration: none;
+    color: #fff;
 
-  border-radius: 3.125rem;
-  background-color: ${(props) => props.theme.colors.primary};
+    display: flex;
+    align-items: center;
+    gap: 0.9375rem;
+    padding-left: 0.75rem;
 
-  height: 3.8125rem;
-  width: 3.125rem;
+    border-radius: 3.125rem;
+    background-color: ${(props) => props.theme.colors.primary};
 
-  overflow: hidden;
-  transition: width 0.5s ease-in-out;
-  animation: ${extendAnimation} 5s, ${retractAnimation} 0.5s 5s;
+    height: 3.8125rem;
+    width: 3.125rem;
 
-  &:hover {
-    width: 13.75rem;
+    overflow: hidden;
+    transition: width 0.5s ease-in-out;
+    animation: ${extendAnimation} 5s, ${retractAnimation} 0.5s 5s;
+
+    &:hover {
+      width: 13.75rem;
+    }
   }
 `;
 
@@ -63,13 +68,8 @@ export const Logo = styled(Image)`
   height: 2.125rem;
 `;
 
-export const Title = styled.h1`
+export const TilteText = styled.span`
   font-size: 1.25rem;
   font-weight: 600;
   white-space: nowrap;
-
-  a {
-    text-decoration: none;
-    color: #fff;
-  }
 `;

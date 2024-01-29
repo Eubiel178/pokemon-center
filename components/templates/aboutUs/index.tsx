@@ -1,9 +1,9 @@
 import { InfoBox } from "@/components/atoms/InfoBox";
 import { CardList } from "./CardList";
 
-export const AboutUsPresentation = () => {
+export const AboutUsTemplate = () => {
   return (
-    <section>
+    <>
       <InfoBox.Root>
         <InfoBox.CurrentRoute />
 
@@ -13,6 +13,6 @@ export const AboutUsPresentation = () => {
       </InfoBox.Root>
 
       <CardList />
-    </section>
+    </>
   );
 };

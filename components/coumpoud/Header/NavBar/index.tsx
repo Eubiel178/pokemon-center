@@ -10,7 +10,7 @@ export const NavBar = () => {
         </S.NavItem>
 
         <S.NavItemHighlight>
-          <Link href="/scheduleAppointment">Agendar Consulta</Link>
+          <Link href="/appointment">Agendar Consulta</Link>
         </S.NavItemHighlight>
       </S.NavList>
     </S.NavBar>

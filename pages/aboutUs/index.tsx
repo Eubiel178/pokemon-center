@@ -1,9 +1,9 @@
-import { AboutUsPresentation } from "@/@core/presentation/aboutUs";
+import { AboutUsTemplate } from "@/components/templates/aboutUs";
 
 const AboutUs = () => {
   return (
     <>
-      <AboutUsPresentation />
+      <AboutUsTemplate />
     </>
   );
 };

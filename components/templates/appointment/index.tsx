@@ -1,7 +1,7 @@
 import { InfoBox } from "@/components/atoms/InfoBox";
 import { FormPresentation } from "./Form";
 
-export const ScheduleAppointmentPresentation = () => {
+export const AppointmentTemplate = () => {
   return (
     <>
       <InfoBox.Root>
