@@ -1,9 +1,9 @@
 import { InfoBox } from "@/@core/components/InfoBox";
-import { Form } from "./Form";
+import { FormPresentation } from "./Form";
 
 export const ScheduleAppointmentPresentation = () => {
   return (
-    <section>
+    <>
       <InfoBox.Root>
         <InfoBox.CurrentRoute />
 
@@ -12,7 +12,7 @@ export const ScheduleAppointmentPresentation = () => {
         <InfoBox.Text>Recupere seus pokémons em 5 segundos</InfoBox.Text>
       </InfoBox.Root>
 
-      <Form />
-    </section>
+      <FormPresentation />
+    </>
   );
 };

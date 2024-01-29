@@ -11,6 +11,4 @@ export const Select = styled.select`
 
   font-size: 0.875rem;
   font-weight: 500;
-
-  width: 100%;
 `;
