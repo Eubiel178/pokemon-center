@@ -1,4 +1,4 @@
-import { InfoBox } from "@/components/InfoBox";
+import { InfoBox } from "@/components/atoms/InfoBox";
 import { CardList } from "./CardList";
 
 export const AboutUsPresentation = () => {

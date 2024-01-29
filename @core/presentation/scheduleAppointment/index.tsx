@@ -1,4 +1,4 @@
-import { InfoBox } from "@/components/InfoBox";
+import { InfoBox } from "@/components/atoms/InfoBox";
 import { FormPresentation } from "./Form";
 
 export const ScheduleAppointmentPresentation = () => {
