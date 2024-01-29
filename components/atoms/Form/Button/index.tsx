@@ -35,7 +35,7 @@ export const Button = ({
     width: 0,
     color: "transparent",
   },
-  background = "#e40f0f",
+  background,
   ...rest
 }: ButtonProps) => {
   return (

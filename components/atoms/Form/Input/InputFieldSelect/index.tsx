@@ -10,12 +10,14 @@ interface InputFieldSelectProps extends ComponentProps<"select"> {
 export const InputFieldSelect = forwardRef<
   HTMLSelectElement,
   InputFieldSelectProps
->(({ helperText = "Selecione", optionsList, ...rest }, ref) => {
+>(({ helperText = "Selecione", optionsList, name, ...rest }, ref) => {
   return (
-    <S.Select ref={ref} {...rest}>
-      <option value="" disabled selected>
-        {helperText}
-      </option>
+    <S.Select {...rest} name={name} id={name} ref={ref}>
+      {helperText && (
+        <option value="" disabled selected>
+          {helperText}
+        </option>
+      )}
 
       {optionsList.map(({ key, label, value }) => (
         <option key={key} value={value}>

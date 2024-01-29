@@ -5,7 +5,8 @@ export const Container = styled.button<VariantsProps>`
   ${({ width, font, border, background }) => css`
     width: ${width};
 
-    background-color: ${background};
+    background-color: ${(props) =>
+      background ? background : props.theme.colors.primary};
     font-size: ${font?.size}rem;
     font-weight: ${font?.weight};
     color: ${font?.color};

@@ -6,12 +6,12 @@ export const InputField = forwardRef<HTMLInputElement, ComponentProps<"input">>(
   ({ type = "text", name, placeholder, ...rest }, ref) => {
     return (
       <S.Input
-        ref={ref}
+        {...rest}
+        id={name}
         type={type}
         name={name}
-        id={name}
         placeholder={placeholder}
-        {...rest}
+        ref={ref}
       />
     );
   }

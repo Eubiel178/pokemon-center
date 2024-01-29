@@ -1,8 +1,16 @@
 import * as S from "./styles";
+import { InputRootProvider, SharedProps } from "@/providers/InputRootProvider";
+
+interface InputRootProps extends React.ComponentProps<"div">, SharedProps {}
 
 export const InputRoot = ({
   children,
+  sharedProps,
   ...rest
-}: React.ComponentProps<"div">) => {
-  return <S.Container {...rest}>{children}</S.Container>;
+}: InputRootProps) => {
+  return (
+    <InputRootProvider sharedProps={sharedProps}>
+      <S.Container {...rest}>{children}</S.Container>
+    </InputRootProvider>
+  );
 };

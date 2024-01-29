@@ -3,7 +3,7 @@ import { InpuWrapper } from "./InpuWrapper";
 import { InputLabel } from "./InputLabel";
 import { InputField } from "./InputField";
 import { InputFieldSelect } from "./InputFieldSelect";
-import { InputHelperText } from "./InputHelperText";
+import { InputErrorText } from "./InputErrorText";
 
 export const Input = {
   Root: InputRoot,
@@ -11,5 +11,5 @@ export const Input = {
   Label: InputLabel,
   Field: InputField,
   FieldSelect: InputFieldSelect,
-  HelperText: InputHelperText,
+  ErrorText: InputErrorText,
 };
