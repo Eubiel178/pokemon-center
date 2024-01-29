@@ -1,5 +1,5 @@
 import { InfoBox } from "@/components/atoms/InfoBox";
-import { FormPresentation } from "./Form";
+import { FormPresentation } from "./FormPresentation";
 
 export const AppointmentTemplate = () => {
   return (

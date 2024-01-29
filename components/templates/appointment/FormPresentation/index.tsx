@@ -22,9 +22,9 @@ export const FormPresentation = () => {
       surname: "",
       region: "",
       city: "",
-      team: [],
-      schedulingDate: "",
-      schedulingHours: "",
+      // team: [],
+      appointmentDate: "",
+      appointmentHours: "",
     },
   });
 
@@ -84,7 +84,7 @@ export const FormPresentation = () => {
 
         <S.Form onSubmit={handleSubmit((data) => console.log(data))}>
           <S.PersonalInfo>
-            <Input.Root>
+            <Input.Root sharedProps={{ error: errors?.name?.message }}>
               <Input.Label htmlFor="name">Nome</Input.Label>
 
               <Input.Wrapper>
@@ -94,11 +94,11 @@ export const FormPresentation = () => {
                 />
               </Input.Wrapper>
 
-              <Input.HelperText />
+              <Input.ErrorText />
             </Input.Root>
 
-            <Input.Root>
-              <Input.Label htmlFor="name">Sobrenome</Input.Label>
+            <Input.Root sharedProps={{ error: errors?.surname?.message }}>
+              <Input.Label htmlFor="surname">Sobrenome</Input.Label>
 
               <Input.Wrapper>
                 <Input.Field
@@ -107,11 +107,11 @@ export const FormPresentation = () => {
                 />
               </Input.Wrapper>
 
-              <Input.HelperText />
+              <Input.ErrorText />
             </Input.Root>
 
-            <Input.Root>
-              <Input.Label htmlFor="name">Região</Input.Label>
+            <Input.Root sharedProps={{ error: errors?.region?.message }}>
+              <Input.Label htmlFor="region">Região</Input.Label>
 
               <Input.Wrapper>
                 <Input.FieldSelect
@@ -121,11 +121,11 @@ export const FormPresentation = () => {
                 />
               </Input.Wrapper>
 
-              <Input.HelperText />
+              <Input.ErrorText />
             </Input.Root>
 
-            <Input.Root>
-              <Input.Label htmlFor="name">Cidade</Input.Label>
+            <Input.Root sharedProps={{ error: errors?.city?.message }}>
+              <Input.Label htmlFor="city">Cidade</Input.Label>
 
               <Input.Wrapper>
                 <Input.FieldSelect
@@ -135,7 +135,7 @@ export const FormPresentation = () => {
                 />
               </Input.Wrapper>
 
-              <Input.HelperText />
+              <Input.ErrorText />
             </Input.Root>
           </S.PersonalInfo>
 
@@ -189,32 +189,38 @@ export const FormPresentation = () => {
           </S.TeamRegistration>
 
           <S.AppointmentDate>
-            <Input.Root>
-              <Input.Label htmlFor="schedulingDate">
+            <Input.Root
+              sharedProps={{ error: errors?.appointmentDate?.message }}
+            >
+              <Input.Label htmlFor="appointmentDate">
                 Data para Atendimento
               </Input.Label>
 
               <Input.Wrapper>
                 <Input.FieldSelect
-                  {...register("schedulingDate")}
+                  {...register("appointmentDate")}
                   helperText="Selecione uma data"
                   optionsList={regionList}
                 />
               </Input.Wrapper>
+
+              <Input.ErrorText />
             </Input.Root>
 
-            <Input.Root>
-              <Input.Label htmlFor="schedulingTime">
+            <Input.Root
+              sharedProps={{ error: errors?.appointmentHours?.message }}
+            >
+              <Input.Label htmlFor="appointmentHours">
                 Data para Atendimento
               </Input.Label>
-
               <Input.Wrapper>
                 <Input.FieldSelect
-                  {...register("schedulingHours")}
+                  {...register("appointmentHours")}
                   helperText="Selecione um horário"
                   optionsList={regionList}
                 />
               </Input.Wrapper>
+              <Input.ErrorText />
             </Input.Root>
           </S.AppointmentDate>
 
