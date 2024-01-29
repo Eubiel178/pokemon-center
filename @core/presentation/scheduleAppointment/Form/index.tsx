@@ -2,7 +2,7 @@ import * as S from "./styles";
 
 import { useReducer, useState } from "react";
 
-import { Button, Input } from "@/@core/components";
+import { Button, Input } from "@/components";
 
 export const FormPresentation = () => {
   const [teamList, setTeamList] = useState<number[]>([]);

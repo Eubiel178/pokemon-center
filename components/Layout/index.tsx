@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { Header, Footer } from "@/@core/components";
+import { Header, Footer } from "@/components";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
