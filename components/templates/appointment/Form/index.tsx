@@ -1,10 +1,33 @@
 import * as S from "./styles";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { InferType } from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schedulingSchema } from "@/validation/appointment/schedulingSchema";
 
 import { Button, Input } from "@/components/atoms";
 
+type FormData = InferType<typeof schedulingSchema>;
+
 export const FormPresentation = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({
+    resolver: yupResolver(schedulingSchema),
+    defaultValues: {
+      name: "",
+      surname: "",
+      region: "",
+      city: "",
+      team: [],
+      schedulingDate: "",
+      schedulingHours: "",
+    },
+  });
+
   const [teamList, setTeamList] = useState<number[]>([]);
   const teamListSize = teamList.length;
   const ThereTeam = teamListSize > 0;
@@ -59,13 +82,16 @@ export const FormPresentation = () => {
           Preencha o formulário abaixo para agendar sua consulta
         </S.Title>
 
-        <S.Form>
+        <S.Form onSubmit={handleSubmit((data) => console.log(data))}>
           <S.PersonalInfo>
             <Input.Root>
               <Input.Label htmlFor="name">Nome</Input.Label>
 
               <Input.Wrapper>
-                <Input.Field placeholder="Digite seu nome" />
+                <Input.Field
+                  {...register("name")}
+                  placeholder="Digite seu nome"
+                />
               </Input.Wrapper>
 
               <Input.HelperText />
@@ -75,7 +101,10 @@ export const FormPresentation = () => {
               <Input.Label htmlFor="name">Sobrenome</Input.Label>
 
               <Input.Wrapper>
-                <Input.Field placeholder="Digite seu sobrenome" />
+                <Input.Field
+                  {...register("surname")}
+                  placeholder="Digite seu sobrenome"
+                />
               </Input.Wrapper>
 
               <Input.HelperText />
@@ -85,7 +114,11 @@ export const FormPresentation = () => {
               <Input.Label htmlFor="name">Região</Input.Label>
 
               <Input.Wrapper>
-                <Input.FieldSelect optionsList={regionList} />
+                <Input.FieldSelect
+                  {...register("region")}
+                  helperText="Selecione sua região"
+                  optionsList={regionList}
+                />
               </Input.Wrapper>
 
               <Input.HelperText />
@@ -95,7 +128,11 @@ export const FormPresentation = () => {
               <Input.Label htmlFor="name">Cidade</Input.Label>
 
               <Input.Wrapper>
-                <Input.FieldSelect optionsList={cityList} />
+                <Input.FieldSelect
+                  {...register("city")}
+                  helperText="Selecione sua cidade"
+                  optionsList={cityList}
+                />
               </Input.Wrapper>
 
               <Input.HelperText />
@@ -156,8 +193,10 @@ export const FormPresentation = () => {
               <Input.Label htmlFor="schedulingDate">
                 Data para Atendimento
               </Input.Label>
+
               <Input.Wrapper>
                 <Input.FieldSelect
+                  {...register("schedulingDate")}
                   helperText="Selecione uma data"
                   optionsList={regionList}
                 />
@@ -168,8 +207,10 @@ export const FormPresentation = () => {
               <Input.Label htmlFor="schedulingTime">
                 Data para Atendimento
               </Input.Label>
+
               <Input.Wrapper>
                 <Input.FieldSelect
+                  {...register("schedulingHours")}
                   helperText="Selecione um horário"
                   optionsList={regionList}
                 />
