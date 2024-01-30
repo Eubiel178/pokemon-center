@@ -11,4 +11,9 @@ export const Select = styled.select`
 
   font-size: 0.875rem;
   font-weight: 500;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;

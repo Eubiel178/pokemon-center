@@ -4,7 +4,7 @@ import { GlobalStyle } from "../styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { lightTheme } from "@/styles/Theme";
 
-import { Layout } from "@/components/templates";
+import { Layout } from "@/components/templates/layout";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

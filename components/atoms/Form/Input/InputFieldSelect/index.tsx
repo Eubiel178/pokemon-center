@@ -1,10 +1,11 @@
+import { SelectOptionInterface } from "@/@core/domain/interfaces/SelectOptionInterface";
 import * as S from "./styles";
 
 import { ComponentProps, forwardRef } from "react";
 
 interface InputFieldSelectProps extends ComponentProps<"select"> {
   helperText?: string;
-  optionsList: { key: number; label: string; value: string }[];
+  optionsList: SelectOptionInterface[];
 }
 
 export const InputFieldSelect = forwardRef<
@@ -19,9 +20,9 @@ export const InputFieldSelect = forwardRef<
         </option>
       )}
 
-      {optionsList.map(({ key, label, value }) => (
-        <option key={key} value={value}>
-          {label}
+      {optionsList.map((element) => (
+        <option key={element?.key} value={element?.value}>
+          {element?.label}
         </option>
       ))}
     </S.Select>

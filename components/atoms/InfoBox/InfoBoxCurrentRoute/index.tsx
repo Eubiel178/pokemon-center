@@ -5,7 +5,7 @@ export const InfoBoxCurrentRoute = () => {
   const routeNames: Record<string, string> = {
     home: "Home",
     aboutUs: "Home > Quem Somos",
-    appointment: "Home > Agendar Consulta",
+    scheduling: "Home > Agendar Consulta",
   };
 
   const router = useRouter();

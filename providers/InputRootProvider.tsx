@@ -1,29 +1,28 @@
 import { ReactNode, createContext, useContext } from "react";
 
-interface InputRootProviderProps {
-  children: ReactNode;
+type SharedProps = {
   sharedProps?: {
     error?: string;
   };
+};
+
+interface InputRootProviderProps extends SharedProps {
+  children: ReactNode;
 }
 
-type SharedProps = Pick<InputRootProviderProps, "sharedProps">;
-
-const InputRootContext = createContext({} as SharedProps);
+const Context = createContext({} as SharedProps);
 
 const InputRootProvider = ({
   children,
   sharedProps,
 }: InputRootProviderProps) => {
   return (
-    <InputRootContext.Provider value={{ sharedProps }}>
-      {children}
-    </InputRootContext.Provider>
+    <Context.Provider value={{ sharedProps }}>{children}</Context.Provider>
   );
 };
 
 const useInputRootContext = () => {
-  return useContext(InputRootContext);
+  return useContext(Context);
 };
 
 export { type SharedProps, InputRootProvider, useInputRootContext };

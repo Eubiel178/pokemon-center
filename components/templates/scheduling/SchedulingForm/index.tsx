@@ -1,19 +1,32 @@
 import * as S from "./styles";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { InferType } from "yup";
+import { useEffect, useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { InferType } from "yup";
 import { schedulingSchema } from "@/validation/appointment/schedulingSchema";
+
+import {
+  SchedulingFormInterface,
+  SelectOptionInterface,
+  SchedulingRepository,
+  SchedulingService,
+} from "@/@core/domain";
 
 import { Button, Input } from "@/components/atoms";
 
 type FormData = InferType<typeof schedulingSchema>;
 
-export const FormPresentation = () => {
+export const SchedulingForm = ({
+  formInfo,
+}: {
+  formInfo: SchedulingFormInterface;
+}) => {
   const {
     register,
     handleSubmit,
+    watch,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: yupResolver(schedulingSchema),
@@ -22,58 +35,54 @@ export const FormPresentation = () => {
       surname: "",
       region: "",
       city: "",
-      // team: [],
+      team: [{ pokemon: "" }],
       appointmentDate: "",
       appointmentHours: "",
     },
   });
+  const { fields, append, remove } = useFieldArray({
+    name: "team",
+    control,
+  });
 
-  const [teamList, setTeamList] = useState<number[]>([]);
-  const teamListSize = teamList.length;
-  const ThereTeam = teamListSize > 0;
+  const schedulingRepository = new SchedulingRepository();
+  const schedulingService = new SchedulingService();
+
+  const [cityList, setCityList] = useState<SelectOptionInterface[]>([]);
+  const teamLimit = 6;
 
   const addTeam = () => {
-    if (teamListSize < 6) {
-      setTeamList((prevState) => [...prevState, teamListSize + 1]);
-    } else {
-      alert("Limite de equipes atingido");
+    if (fields.length < teamLimit) {
+      append({
+        pokemon: "",
+      });
     }
   };
 
-  const removeTeam = () => {
-    if (teamListSize > 0) {
-      const newTeamList = [...teamList];
-
-      setTeamList(newTeamList);
-    } else {
-      alert("Nenhuma equipe adicionada");
+  const removeTeam = (index: number) => {
+    if (fields.length > 1) {
+      remove(index);
     }
   };
 
-  const regionList = [
-    {
-      key: 1,
-      label: "Kanto",
-      value: "Kanto",
-    },
-  ];
-  const cityList = [
-    {
-      key: 1,
-      label: "Pewter City",
-      value: "Pewter City",
-    },
-    {
-      key: 2,
-      label: "Pallet Town",
-      value: "Pallet Town",
-    },
-    {
-      key: 3,
-      label: "Veridian City",
-      value: "Veridian City",
-    },
-  ];
+  useEffect(() => {
+    (async () => {
+      try {
+        const regionSelected = watch("region");
+
+        if (regionSelected) {
+          const response = await schedulingRepository.region(regionSelected);
+          const cityListFormat = schedulingService.formatCitys(
+            response?.data.locations
+          );
+
+          setCityList(cityListFormat);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [watch("region")]);
 
   return (
     <S.Container>
@@ -82,7 +91,11 @@ export const FormPresentation = () => {
           Preencha o formulário abaixo para agendar sua consulta
         </S.Title>
 
-        <S.Form onSubmit={handleSubmit((data) => console.log(data))}>
+        <S.Form
+          onSubmit={handleSubmit((data) => {
+            console.log(data);
+          })}
+        >
           <S.PersonalInfo>
             <Input.Root sharedProps={{ error: errors?.name?.message }}>
               <Input.Label htmlFor="name">Nome</Input.Label>
@@ -117,7 +130,7 @@ export const FormPresentation = () => {
                 <Input.FieldSelect
                   {...register("region")}
                   helperText="Selecione sua região"
-                  optionsList={regionList}
+                  optionsList={formInfo.regionsList}
                 />
               </Input.Wrapper>
 
@@ -130,8 +143,18 @@ export const FormPresentation = () => {
               <Input.Wrapper>
                 <Input.FieldSelect
                   {...register("city")}
-                  helperText="Selecione sua cidade"
                   optionsList={cityList}
+                  helperText={
+                    cityList.length === 0
+                      ? "Selecione sua Região primeiro"
+                      : "Selecione sua cidade"
+                  }
+                  title={
+                    cityList.length === 0
+                      ? "Selecione sua Região primeiro"
+                      : "Selecione sua cidade"
+                  }
+                  disabled={cityList.length === 0}
                 />
               </Input.Wrapper>
 
@@ -151,40 +174,55 @@ export const FormPresentation = () => {
             </S.TeamRegistrationHeader>
 
             <S.TeamRegistrationFields>
-              {ThereTeam &&
-                teamList.map((team) => (
-                  <Input.Root key={team}>
-                    <Input.Wrapper direction="row" align="center" gap={2}>
-                      <Input.Label htmlFor="pokemonList">
-                        Pokémon 0{team}
-                      </Input.Label>
+              {fields.map((team, index) => (
+                <Input.Root
+                  key={team.id}
+                  sharedProps={{
+                    error: errors.team?.[index]?.pokemon?.message,
+                  }}
+                >
+                  <Input.Wrapper direction="row" align="center" gap={2}>
+                    <Input.Label htmlFor="pokemonList">
+                      Pokemon 0{index + 1}
+                    </Input.Label>
 
-                      <Input.FieldSelect
-                        helperText="Selecione seu pokémon"
-                        optionsList={regionList}
-                      />
-                    </Input.Wrapper>
-                  </Input.Root>
-                ))}
+                    <Input.FieldSelect
+                      {...register(`team.${index}.pokemon`)}
+                      helperText="Selecione seu pokémon"
+                      optionsList={formInfo.pokemonList}
+                    />
 
-              <Button
-                type="button"
-                onClick={addTeam}
-                background="white"
-                font={{
-                  color: "#1D1D1D",
-                  size: 0.75,
-                  weight: 700,
-                }}
-                border={{
-                  width: 0.0625,
-                  type: "solid",
-                  color: "#1D1D1D",
-                  rounded: 1.875,
-                }}
-              >
-                Adicionar novo pokémon ao time... {"\u00A0"}+
-              </Button>
+                    {index > 0 && (
+                      <Button type="button" onClick={() => removeTeam(index)}>
+                        Deletar
+                      </Button>
+                    )}
+                  </Input.Wrapper>
+
+                  <Input.ErrorText />
+                </Input.Root>
+              ))}
+
+              {fields.length < 6 && (
+                <Button
+                  type="button"
+                  onClick={addTeam}
+                  background="white"
+                  font={{
+                    color: "#1D1D1D",
+                    size: 0.75,
+                    weight: 700,
+                  }}
+                  border={{
+                    width: 0.0625,
+                    type: "solid",
+                    color: "#1D1D1D",
+                    rounded: 1.875,
+                  }}
+                >
+                  Adicionar novo pokémon ao time... {"\u00A0"}+
+                </Button>
+              )}
             </S.TeamRegistrationFields>
           </S.TeamRegistration>
 
@@ -200,7 +238,7 @@ export const FormPresentation = () => {
                 <Input.FieldSelect
                   {...register("appointmentDate")}
                   helperText="Selecione uma data"
-                  optionsList={regionList}
+                  optionsList={formInfo.avaliableDates}
                 />
               </Input.Wrapper>
 
@@ -217,7 +255,7 @@ export const FormPresentation = () => {
                 <Input.FieldSelect
                   {...register("appointmentHours")}
                   helperText="Selecione um horário"
-                  optionsList={regionList}
+                  optionsList={formInfo.avaliableTimes}
                 />
               </Input.Wrapper>
               <Input.ErrorText />
