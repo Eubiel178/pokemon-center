@@ -1,5 +1,7 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import { Registry, container } from "@/@core/infrastructure/inversify.config";
 
 import {
@@ -39,6 +41,19 @@ const Scheduling = ({
       </InfoBox.Root>
 
       <SchedulingForm formInfo={formInfo} />
+
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
