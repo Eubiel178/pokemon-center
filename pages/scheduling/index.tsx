@@ -8,6 +8,8 @@ import {
   ListRegionsUseCase,
 } from "@/@core/use-case";
 
+import { formatToJson } from "@/utils";
+
 import { InfoBox } from "@/components/atoms/infoBox";
 import { SchedulingForm } from "@/components/templates/scheduling/SchedulingForm";
 
@@ -42,10 +44,6 @@ const Scheduling = ({
 };
 
 export const getServerSideProps = (async () => {
-  const formatToJson = <T,>(data: { toJson: () => T }[]) => {
-    return data.map((element) => element.toJson());
-  };
-
   const availableSchedulingUseCase = container.get<AvailableSchedulingUseCase>(
     Registry.AvailableSchedulingUseCase
   );
