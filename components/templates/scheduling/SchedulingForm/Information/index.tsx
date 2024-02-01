@@ -1,7 +1,8 @@
-import { useFormContext, useWatch } from "react-hook-form";
 import * as S from "./styles";
 
+import { useFormContext, useWatch } from "react-hook-form";
 import { useEffect, useState } from "react";
+
 import { Button } from "@/components/atoms";
 
 export const Information = () => {
@@ -88,7 +89,9 @@ export const Information = () => {
       <S.ButtonSubmitContainer>
         <S.TotalPrice>Valor Total: {information.totalPayable}</S.TotalPrice>
 
-        <Button loading={isSubmitting}>Concluir Agendamento</Button>
+        <Button loading={isSubmitting} type="submit">
+          Concluir Agendamento
+        </Button>
       </S.ButtonSubmitContainer>
     </>
   );

@@ -1,15 +1,19 @@
 import * as S from "./styles";
 
+import Image from "next/image";
+import { toast } from "react-toastify";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InferType } from "yup";
 import { schedulingSchema } from "@/validation/scheduling/schedulingSchema";
 
-import { type FormInfoProps } from "@/pages/scheduling";
-
 import { PersonalInfo } from "./PersonalInfo";
 import { TeamRegistration } from "./TeamRegistration";
+import { Availability } from "./Availability";
 import { Information } from "./Information";
+
+import { type FormInfoProps } from "@/pages/scheduling";
+import { Button, ModalToast } from "@/components/atoms";
 
 export type FormData = InferType<typeof schedulingSchema>;
 
@@ -27,6 +31,69 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
     },
   });
 
+  const handleOnSubmit = (data: FormData) => {
+    const toastStyles = {
+      borderColor: "#DF8686",
+      borderWidth: "0.0625rem",
+      borderStyle: "solid",
+    };
+
+    try {
+      methods.reset();
+
+      toast(
+        <ModalToast.Root>
+          <ModalToast.Title>Agendamento concluído</ModalToast.Title>
+
+          <ModalToast.Text>
+            Seu agendamento para dia {data.scheduledDate}, às
+            {data.scheduledHours}, para {data.team?.length} pokémons foi
+            realizado com sucesso!
+          </ModalToast.Text>
+
+          <Image src="/check.svg" alt="success" width={41} height={41} />
+
+          <Button>Fazer Novo Agendamento</Button>
+        </ModalToast.Root>,
+        {
+          position: "top-center",
+          style: toastStyles,
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    } catch (error: any) {
+      toast(
+        <ModalToast.Root>
+          <ModalToast.Title>Houve um problema no agendamento</ModalToast.Title>
+
+          <ModalToast.Text>{error?.message}</ModalToast.Text>
+
+          <Image src="/warning.svg" alt="warning" width={41} height={41} />
+
+          <Button onClick={() => methods.reset()}>
+            Fazer Novo Agendamento
+          </Button>
+        </ModalToast.Root>,
+
+        {
+          position: "top-center",
+          style: toastStyles,
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    }
+  };
+
   return (
     <S.Container>
       <S.Content>
@@ -35,14 +102,12 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
         </S.Title>
 
         <FormProvider {...methods}>
-          <S.Form
-            onSubmit={methods.handleSubmit((data) => {
-              console.log(data);
-            })}
-          >
+          <S.Form onSubmit={methods.handleSubmit(handleOnSubmit)}>
             <PersonalInfo formInfo={formInfo} />
 
             <TeamRegistration formInfo={formInfo} />
+
+            <Availability formInfo={formInfo} />
 
             <Information />
           </S.Form>
