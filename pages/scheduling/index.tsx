@@ -82,7 +82,10 @@ export const getServerSideProps = (async () => {
       ]);
 
     const formInfo: FormInfoProps = {
-      availabilityScheduling: availabilityScheduling.toJson(),
+      availabilityScheduling: {
+        date: availabilityScheduling.getDate(),
+        time: availabilityScheduling.getTime(),
+      },
       pokemons: formatToJson(listPokemons),
       regions: formatToJson(listRegions),
     };
