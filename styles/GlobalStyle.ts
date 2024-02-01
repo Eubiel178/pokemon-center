@@ -3,9 +3,19 @@ import { ResetStyle } from "./ResetStyle";
 
 export const GlobalStyle = createGlobalStyle`
   ${ResetStyle}
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+  
 
   :root {
     --content-width:clamp( 85vw,85vw,1440px);
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   #__next {
@@ -15,12 +25,16 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: stretch;
     flex-direction: column;
+
+
   }
 
   h2 {
     color: #FFF;
     font-size: 2rem;
     font-weight: 700;
+  }
+  h3 {
   }
 
   p {
