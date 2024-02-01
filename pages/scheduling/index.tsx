@@ -12,7 +12,7 @@ import {
 
 import { formatToJson } from "@/utils";
 
-import { InfoBox } from "@/components/atoms/infoBox";
+import { InfoBox } from "@/components/atoms/InfoBox";
 import { SchedulingForm } from "@/components/templates/scheduling/SchedulingForm";
 
 type FormItem = {
