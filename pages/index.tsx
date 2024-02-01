@@ -1,5 +1,11 @@
-export default function Home() {
+import { HomeTemplate } from "@/components/templates/home";
+
+const Home = () => {
   return (
-    <></>
-  )
-}
+    <>
+      <HomeTemplate />
+    </>
+  );
+};
+
+export default Home;
