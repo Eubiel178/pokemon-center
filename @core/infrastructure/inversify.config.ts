@@ -27,7 +27,7 @@ export const Registry = {
   AvailableSchedulingUseCase: Symbol.for("AvailableSchedulingUseCase"),
   ListPokemonsUseCase: Symbol.for("ListPokemonsUseCase"),
   ListRegionsUseCase: Symbol.for("ListRegionsUseCase"),
-  GetCitiesUsecase,
+  GetCitiesUsecase: Symbol.for("GetCitiesUsecase"),
 };
 
 export const container = new Container();
