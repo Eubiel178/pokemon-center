@@ -64,5 +64,5 @@ container.bind(Registry.ListRegionsUseCase).toDynamicValue((context) => {
   return new ListRegionsUseCase(context.container.get(Registry.RegionGateway));
 });
 container.bind(Registry.GetCitiesUsecase).toDynamicValue((context) => {
-  return new GetCitiesUsecase(context.container.get(Registry.PokeApiAdapter));
+  return new GetCitiesUsecase(context.container.get(Registry.RegionGateway));
 });
