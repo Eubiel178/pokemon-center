@@ -1,21 +1,5 @@
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app'
 
-import { GlobalStyle } from "../styles/GlobalStyle";
-import { ThemeProvider } from "styled-components";
-import { lightTheme } from "@/styles/Theme";
-
-import { Layout } from "@/components/templates/layout";
-
-const App = ({ Component, pageProps }: AppProps) => {
-  return (
-    <ThemeProvider theme={lightTheme}>
-      <GlobalStyle />
-
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
-  );
-};
-
-export default App;
+export default function App({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />
+}
