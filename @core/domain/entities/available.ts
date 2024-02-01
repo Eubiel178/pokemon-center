@@ -11,4 +11,11 @@ export class Available {
     this.time = props.time;
     this.date = props.date;
   }
+
+  public toJson() {
+    return {
+      time: this.time,
+      date: this.date,
+    };
+  }
 }

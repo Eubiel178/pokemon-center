@@ -1,13 +1,12 @@
-import "reflect-metadata";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
-import { Registry, container } from "@/@core/Infrastructure/inversify.config";
+import { Registry, container } from "@/@core/infrastructure/inversify.config";
 
 import {
   AvailableSchedulingUseCase,
   ListPokemonsUseCase,
-  ListRegionUseCase,
-} from "@/@core/use case";
+  ListRegionsUseCase,
+} from "@/@core/use-case";
 
 import { InfoBox } from "@/components/atoms/InfoBox";
 import { SchedulingForm } from "@/components/templates/scheduling/SchedulingForm";
@@ -43,28 +42,32 @@ const Scheduling = ({
 };
 
 export const getServerSideProps = (async () => {
-  const availabilitySchedulingUseCase =
-    container.get<AvailableSchedulingUseCase>(
-      Registry.AvailableSchedulingUseCase
-    );
+  const formatToJson = <T,>(data: { toJson: () => T }[]) => {
+    return data.map((element) => element.toJson());
+  };
+
+  const availableSchedulingUseCase = container.get<AvailableSchedulingUseCase>(
+    Registry.AvailableSchedulingUseCase
+  );
   const listPokemonsUseCase = container.get<ListPokemonsUseCase>(
     Registry.ListPokemonsUseCase
   );
-  const listRegionUseCase = container.get<ListRegionUseCase>(
-    Registry.ListRegionUseCase
+  const listRegionsInfo = container.get<ListRegionsUseCase>(
+    Registry.ListRegionsUseCase
   );
 
-  const [availabilityScheduling, listPokemons, listRegion] = await Promise.all([
-    availabilitySchedulingUseCase.execute(),
-    listPokemonsUseCase.execute(),
-    listRegionUseCase.execute(),
-  ]);
-  console.log(availabilityScheduling);
+  const [availabilityScheduling, listPokemons, listRegions] = await Promise.all(
+    [
+      availableSchedulingUseCase.execute(),
+      listPokemonsUseCase.execute(),
+      listRegionsInfo.execute(),
+    ]
+  );
 
   const formInfo: FormInfoProps = {
-    availabilityScheduling: availabilityScheduling.props,
-    pokemons: listPokemons,
-    regions: listRegion,
+    availabilityScheduling: availabilityScheduling.toJson(),
+    pokemons: formatToJson(listPokemons),
+    regions: formatToJson(listRegions),
   };
 
   return {

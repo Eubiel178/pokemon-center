@@ -5,8 +5,6 @@ export class ListPokemonsUseCase {
   constructor(private pokemonGateway: PokemonGateway) {}
 
   async execute(): Promise<Pokemon[]> {
-    const pokemons = await this.pokemonGateway.getPokemons();
-
-    return pokemons;
+    return await this.pokemonGateway.getPokemons();
   }
 }

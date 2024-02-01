@@ -1,5 +1,5 @@
-import { Container } from "inversify";
 import "reflect-metadata";
+import { Container } from "inversify";
 
 import { http } from "./http";
 import { pokeApi } from "./pokeApi";
@@ -12,8 +12,9 @@ import {
 import {
   AvailableSchedulingUseCase,
   ListPokemonsUseCase,
-  ListRegionUseCase,
-} from "../use case";
+  ListRegionsUseCase,
+  GetCitiesUsecase,
+} from "../use-case";
 
 export const Registry = {
   HttpAdapter: Symbol.for("HttpAdapter"),
@@ -25,14 +26,17 @@ export const Registry = {
 
   AvailableSchedulingUseCase: Symbol.for("AvailableSchedulingUseCase"),
   ListPokemonsUseCase: Symbol.for("ListPokemonsUseCase"),
-  ListRegionUseCase: Symbol.for("ListRegionUseCase"),
+  ListRegionsUseCase: Symbol.for("ListRegionsUseCase"),
+  GetCitiesUsecase,
 };
 
 export const container = new Container();
 
+//######### HTTP #########
 container.bind(Registry.HttpAdapter).toConstantValue(http);
 container.bind(Registry.PokeApiAdapter).toConstantValue(pokeApi);
 
+//######### GATEWAYS #########
 container.bind(Registry.AvaliableGateway).toDynamicValue((context) => {
   return new AvaliableHttpGateway(context.container.get(Registry.HttpAdapter));
 });
@@ -43,6 +47,7 @@ container.bind(Registry.RegionGateway).toDynamicValue((context) => {
   return new RegionHttpGateway(context.container.get(Registry.PokeApiAdapter));
 });
 
+//######### USE CASES #########
 container
   .bind(Registry.AvailableSchedulingUseCase)
   .toDynamicValue((context) => {
@@ -55,6 +60,9 @@ container.bind(Registry.ListPokemonsUseCase).toDynamicValue((context) => {
     context.container.get(Registry.PokemonGateway)
   );
 });
-container.bind(Registry.ListRegionUseCase).toDynamicValue((context) => {
-  return new ListRegionUseCase(context.container.get(Registry.RegionGateway));
+container.bind(Registry.ListRegionsUseCase).toDynamicValue((context) => {
+  return new ListRegionsUseCase(context.container.get(Registry.RegionGateway));
+});
+container.bind(Registry.GetCitiesUsecase).toDynamicValue((context) => {
+  return new GetCitiesUsecase(context.container.get(Registry.PokeApiAdapter));
 });

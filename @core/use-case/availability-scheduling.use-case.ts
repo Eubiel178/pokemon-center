@@ -1,4 +1,4 @@
-import { AvaliableHttpGateway } from "../Infrastructure/gateways/avaliable-http.gateway";
+import { AvaliableHttpGateway } from "../infrastructure/gateways/avaliable-http.gateway";
 import { Available } from "../domain/entities/available";
 
 export class AvailableSchedulingUseCase {
