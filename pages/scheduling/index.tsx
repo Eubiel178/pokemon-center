@@ -8,7 +8,7 @@ import {
   ListRegionsUseCase,
 } from "@/@core/use-case";
 
-import { InfoBox } from "@/components/atoms/InfoBox";
+import { InfoBox } from "@/components/atoms/infoBox";
 import { SchedulingForm } from "@/components/templates/scheduling/SchedulingForm";
 
 type FormItem = {

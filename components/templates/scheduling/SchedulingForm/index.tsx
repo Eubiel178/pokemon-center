@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InferType } from "yup";
-import { schedulingSchema } from "@/validation/appointment/schedulingSchema";
+import { schedulingSchema } from "@/validation/scheduling/schedulingSchema";
 
 import { Button, Input } from "@/components/atoms";
 import { FormInfoProps } from "@/pages/scheduling";
@@ -41,6 +41,7 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
   ]);
   const regionSelected = cityList.length;
   const teamLimit = 6;
+  const teamSize = fields.length;
 
   const addTeam = () => {
     if (fields.length < teamLimit) {
@@ -282,7 +283,7 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
             <S.InfoItem>
               <S.InfoText>Número de pokémons a serem atendidos:</S.InfoText>
 
-              <S.InfoText>01</S.InfoText>
+              <S.InfoText>{teamSize.toString().padStart(2, "0")}</S.InfoText>
             </S.InfoItem>
 
             <S.InfoItem>

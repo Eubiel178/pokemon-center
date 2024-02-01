@@ -1,5 +1,5 @@
-import { InfoBox } from "@/components/atoms/InfoBox";
-import { CardList } from "./CardList";
+import { InfoBox } from "@/components/atoms/infoBox";
+import { CardList } from "./cardList";
 
 export const AboutUsTemplate = () => {
   return (
