@@ -46,7 +46,7 @@ export const Button = ({
       background={background}
       font={font}
     >
-      {children}
+      {loading ? "Carregando..." : children}
     </S.Container>
   );
 };

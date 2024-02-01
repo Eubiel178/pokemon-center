@@ -1,21 +1,33 @@
+import "reflect-metadata";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
+import { Registry, container } from "@/@core/Infrastructure/inversify.config";
+
 import {
-  SchedulingFormInterface,
-  SchedulingRepository,
-  SchedulingService,
-} from "@/@core/domain";
+  AvailableSchedulingUseCase,
+  ListPokemonsUseCase,
+  ListRegionUseCase,
+} from "@/@core/use case";
 
 import { InfoBox } from "@/components/atoms/InfoBox";
 import { SchedulingForm } from "@/components/templates/scheduling/SchedulingForm";
 
+type FormItem = {
+  name: string;
+  id: string;
+};
+
+export interface FormInfoProps {
+  availabilityScheduling: {
+    date: string[];
+    time: string[];
+  };
+  pokemons: FormItem[];
+  regions: FormItem[];
+}
+
 const Scheduling = ({
-  formInfo = {
-    avaliableDates: [],
-    avaliableTimes: [],
-    regionsList: [],
-    pokemonList: [],
-  },
+  formInfo,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
@@ -31,43 +43,35 @@ const Scheduling = ({
 };
 
 export const getServerSideProps = (async () => {
-  const schedulingRepository = new SchedulingRepository();
-  const schedulingService = new SchedulingService();
-
-  const [avaliableDates, avaliableTimes, regionsList, pokemonList] =
-    await Promise.all([
-      schedulingRepository.availableDates(),
-      schedulingRepository.availableTimes(),
-      schedulingRepository.regionsList(),
-      schedulingRepository.pokemonList(),
-    ]);
-
-  const avaliableDatesFormat = schedulingService.formatDates(
-    avaliableDates?.data
+  const availabilitySchedulingUseCase =
+    container.get<AvailableSchedulingUseCase>(
+      Registry.AvailableSchedulingUseCase
+    );
+  const listPokemonsUseCase = container.get<ListPokemonsUseCase>(
+    Registry.ListPokemonsUseCase
   );
-  const avliableTimesFormat = schedulingService.formatTimes(
-    avaliableTimes?.data
-  );
-  const regionsListFormat = schedulingService.formatRegions(
-    regionsList?.data.results
+  const listRegionUseCase = container.get<ListRegionUseCase>(
+    Registry.ListRegionUseCase
   );
 
-  const pokemonsListFormat = schedulingService.formatPokemons(
-    pokemonList.data.results
-  );
+  const [availabilityScheduling, listPokemons, listRegion] = await Promise.all([
+    availabilitySchedulingUseCase.execute(),
+    listPokemonsUseCase.execute(),
+    listRegionUseCase.execute(),
+  ]);
+  console.log(availabilityScheduling);
 
-  const formInfo: SchedulingFormInterface = {
-    avaliableDates: avaliableDatesFormat,
-    avaliableTimes: avliableTimesFormat,
-    regionsList: regionsListFormat,
-    pokemonList: pokemonsListFormat,
+  const formInfo: FormInfoProps = {
+    availabilityScheduling: availabilityScheduling.props,
+    pokemons: listPokemons,
+    regions: listRegion,
   };
 
   return {
     props: {
-      formInfo,
+      formInfo: formInfo,
     },
   };
-}) satisfies GetServerSideProps<{ formInfo: SchedulingFormInterface }>;
+}) satisfies GetServerSideProps<{ formInfo: FormInfoProps }>;
 
 export default Scheduling;

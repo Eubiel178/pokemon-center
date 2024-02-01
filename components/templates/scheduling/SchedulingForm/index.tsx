@@ -6,22 +6,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { InferType } from "yup";
 import { schedulingSchema } from "@/validation/appointment/schedulingSchema";
 
-import {
-  SchedulingFormInterface,
-  SelectOptionInterface,
-  SchedulingRepository,
-  SchedulingService,
-} from "@/@core/domain";
-
 import { Button, Input } from "@/components/atoms";
+import { FormInfoProps } from "@/pages/scheduling";
 
 type FormData = InferType<typeof schedulingSchema>;
 
-export const SchedulingForm = ({
-  formInfo,
-}: {
-  formInfo: SchedulingFormInterface;
-}) => {
+export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
   const {
     register,
     handleSubmit,
@@ -40,15 +30,16 @@ export const SchedulingForm = ({
       appointmentHours: "",
     },
   });
+
   const { fields, append, remove } = useFieldArray({
     name: "team",
     control,
   });
 
-  const schedulingRepository = new SchedulingRepository();
-  const schedulingService = new SchedulingService();
-
-  const [cityList, setCityList] = useState<SelectOptionInterface[]>([]);
+  const [cityList, setCityList] = useState([
+    { id: "24525", name: "", url: "" },
+  ]);
+  const regionSelected = cityList.length;
   const teamLimit = 6;
 
   const addTeam = () => {
@@ -65,18 +56,29 @@ export const SchedulingForm = ({
     }
   };
 
+  const handleOptionsInSelect = (
+    optionList: { id: string; name: string }[]
+  ) => {
+    return optionList.map((option) => {
+      return (
+        <option key={option.id} value={option.id}>
+          {option.name}
+        </option>
+      );
+    });
+  };
+
   useEffect(() => {
     (async () => {
       try {
         const regionSelected = watch("region");
 
         if (regionSelected) {
-          const response = await schedulingRepository.region(regionSelected);
-          const cityListFormat = schedulingService.formatCitys(
-            response?.data.locations
-          );
-
-          setCityList(cityListFormat);
+          // const response = await schedulingRepository.region(regionSelected);
+          // const cityListFormat = schedulingService.formatCitys(
+          //   response?.data.locations
+          // );
+          // setCityList(cityListFormat);
         }
       } catch (error) {
         console.log(error);
@@ -90,7 +92,6 @@ export const SchedulingForm = ({
         <S.Title>
           Preencha o formulário abaixo para agendar sua consulta
         </S.Title>
-
         <S.Form
           onSubmit={handleSubmit((data) => {
             console.log(data);
@@ -127,11 +128,13 @@ export const SchedulingForm = ({
               <Input.Label htmlFor="region">Região</Input.Label>
 
               <Input.Wrapper>
-                <Input.FieldSelect
-                  {...register("region")}
-                  helperText="Selecione sua região"
-                  optionsList={formInfo.regionsList}
-                />
+                <Input.FieldSelect {...register("region")}>
+                  <option value="" disabled>
+                    Selecione sua Região
+                  </option>
+
+                  {handleOptionsInSelect(formInfo.regions)}
+                </Input.FieldSelect>
               </Input.Wrapper>
 
               <Input.ErrorText />
@@ -143,19 +146,16 @@ export const SchedulingForm = ({
               <Input.Wrapper>
                 <Input.FieldSelect
                   {...register("city")}
-                  optionsList={cityList}
-                  helperText={
-                    cityList.length === 0
+                  disabled={regionSelected === 0}
+                >
+                  <option value="" disabled>
+                    {regionSelected === 0
                       ? "Selecione sua Região primeiro"
-                      : "Selecione sua cidade"
-                  }
-                  title={
-                    cityList.length === 0
-                      ? "Selecione sua Região primeiro"
-                      : "Selecione sua cidade"
-                  }
-                  disabled={cityList.length === 0}
-                />
+                      : "Selecione sua cidade"}
+                  </option>
+
+                  {regionSelected > 0 && handleOptionsInSelect(cityList)}
+                </Input.FieldSelect>
               </Input.Wrapper>
 
               <Input.ErrorText />
@@ -186,11 +186,13 @@ export const SchedulingForm = ({
                       Pokemon 0{index + 1}
                     </Input.Label>
 
-                    <Input.FieldSelect
-                      {...register(`team.${index}.pokemon`)}
-                      helperText="Selecione seu pokémon"
-                      optionsList={formInfo.pokemonList}
-                    />
+                    <Input.FieldSelect {...register(`team.${index}.pokemon`)}>
+                      <option value="" disabled>
+                        Selecione seu Pokemon
+                      </option>
+
+                      {handleOptionsInSelect(formInfo.pokemons)}
+                    </Input.FieldSelect>
 
                     {index > 0 && (
                       <Button type="button" onClick={() => removeTeam(index)}>
@@ -235,11 +237,17 @@ export const SchedulingForm = ({
               </Input.Label>
 
               <Input.Wrapper>
-                <Input.FieldSelect
-                  {...register("appointmentDate")}
-                  helperText="Selecione uma data"
-                  optionsList={formInfo.avaliableDates}
-                />
+                <Input.FieldSelect {...register("appointmentDate")}>
+                  <option value="" disabled>
+                    Selecione uma data
+                  </option>
+
+                  {formInfo.availabilityScheduling.date.map((date: string) => (
+                    <option key={date} value={date}>
+                      {date}
+                    </option>
+                  ))}
+                </Input.FieldSelect>
               </Input.Wrapper>
 
               <Input.ErrorText />
@@ -251,13 +259,21 @@ export const SchedulingForm = ({
               <Input.Label htmlFor="appointmentHours">
                 Data para Atendimento
               </Input.Label>
+
               <Input.Wrapper>
-                <Input.FieldSelect
-                  {...register("appointmentHours")}
-                  helperText="Selecione um horário"
-                  optionsList={formInfo.avaliableTimes}
-                />
+                <Input.FieldSelect {...register("appointmentHours")}>
+                  <option value="" disabled>
+                    Selecione uma hora
+                  </option>
+
+                  {formInfo.availabilityScheduling.time.map((time: string) => (
+                    <option key={time} value={time}>
+                      {time}
+                    </option>
+                  ))}
+                </Input.FieldSelect>
               </Input.Wrapper>
+
               <Input.ErrorText />
             </Input.Root>
           </S.AppointmentDate>
@@ -296,7 +312,7 @@ export const SchedulingForm = ({
           <S.ButtonSubmitContainer>
             <S.TotalPrice>Valor Total: R$ 72,10</S.TotalPrice>
 
-            <Button>Concluir Agendamento</Button>
+            <Button loading={isSubmitting}>Concluir Agendamento</Button>
           </S.ButtonSubmitContainer>
         </S.Form>
       </S.Content>

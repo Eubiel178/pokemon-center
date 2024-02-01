@@ -1,4 +1,4 @@
-export interface SchedulingType {
+export interface SchedulingProps {
   name: string;
   surname: string;
   region: string;
