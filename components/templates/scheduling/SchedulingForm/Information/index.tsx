@@ -20,6 +20,7 @@ export const Information = () => {
     unitaryValueFormatted: "",
     subtotal: "",
     rateFormatted: "",
+    totalPayable: "",
   });
 
   const formatValue = (value: number) => {
@@ -27,6 +28,10 @@ export const Information = () => {
       style: "currency",
       currency: "BRL",
     });
+  };
+
+  const calculateRate = (quantity: number) => {
+    return quantity * unitaryValue * 0.03;
   };
 
   useEffect(() => {
@@ -39,7 +44,10 @@ export const Information = () => {
         numberOfPokemons: pokemonList.length.toLocaleString().padStart(2, "0"),
         unitaryValueFormatted: formatValue(unitaryValue),
         subtotal: formatValue(pokemonList.length * unitaryValue),
-        rateFormatted: formatValue(pokemonList.length * unitaryValue * 0.03),
+        rateFormatted: formatValue(calculateRate(pokemonList.length)),
+        totalPayable: formatValue(
+          calculateRate(pokemonList.length) + pokemonList.length * unitaryValue
+        ),
       });
     }
   }, [team]);
@@ -66,11 +74,9 @@ export const Information = () => {
         </S.InfoItem>
 
         <S.InfoItem>
-          <S.InfoText>
-            Taxa geracional*: {information.rateFormatted}{" "}
-          </S.InfoText>
+          <S.InfoText>Taxa geracional*: </S.InfoText>
 
-          <S.InfoText>R$</S.InfoText>
+          <S.InfoText>{information.rateFormatted}</S.InfoText>
         </S.InfoItem>
 
         <S.InfoFee>
@@ -80,13 +86,7 @@ export const Information = () => {
       </S.Info>
 
       <S.ButtonSubmitContainer>
-        <S.TotalPrice>
-          Valor Total:{"\u00A0"}
-          {parseFloat(information.subtotal)
-            ? parseFloat(information.subtotal) +
-                parseFloat(information.rateFormatted) || 0
-            : "R$ 0,00"}
-        </S.TotalPrice>
+        <S.TotalPrice>Valor Total: {information.totalPayable}</S.TotalPrice>
 
         <Button loading={isSubmitting}>Concluir Agendamento</Button>
       </S.ButtonSubmitContainer>
