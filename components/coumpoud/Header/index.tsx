@@ -23,3 +23,5 @@ export const Header = () => {
     </S.Container>
   );
 };
+
+Header.displayName = "Header";

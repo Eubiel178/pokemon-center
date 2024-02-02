@@ -18,3 +18,5 @@ export const CardList = () => {
     </S.Container>
   );
 };
+
+CardList.displayName = "CardList";

@@ -9,3 +9,5 @@ export const HomeTemplate = () => {
     </S.Container>
   );
 };
+
+HomeTemplate.displayName = "HomeTemplate";

@@ -21,9 +21,9 @@ const CustomErrorPage = () => {
 
       <p style={{ fontSize: "1rem", lineHeight: "2rem", fontWeight: "bold" }}>
         Desculpe, ocorreu um <span style={{ color: "red" }}>erro </span>
-        inesperado ao iniciar a aplicação. Por favor, tente novamente mais
-        tarde. Se o problema persistir, entre em contato conosco para obter
-        assistência. Pedimos desculpas pelo transtorno
+        inesperado na aplicação. Por favor, tente novamente mais tarde. Se o
+        problema persistir, entre em contato conosco para obter assistência.
+        Pedimos desculpas pelo transtorno
         <br />
         email de suporte:
         <Link href="mailto:dev123gabriel@gmail.com">

@@ -96,3 +96,5 @@ export const Information = () => {
     </>
   );
 };
+
+Information.displayName = "Information";

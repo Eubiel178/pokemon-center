@@ -11,3 +11,5 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     </>
   );
 };
+
+Layout.displayName = "Layout";

@@ -16,3 +16,5 @@ export const NavBar = () => {
     </S.NavBar>
   );
 };
+
+NavBar.displayName = "NavBar";

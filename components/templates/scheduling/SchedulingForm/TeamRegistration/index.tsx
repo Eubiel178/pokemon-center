@@ -114,3 +114,5 @@ export const TeamRegistration = ({ formInfo }: { formInfo: FormInfoProps }) => {
     </S.Fieldset>
   );
 };
+
+TeamRegistration.displayName = "TeamRegistration";
