@@ -84,10 +84,8 @@ export const PersonalInfo = ({ formInfo }: { formInfo: FormInfoProps }) => {
         <Input.Label htmlFor="region">Região</Input.Label>
 
         <Input.Wrapper>
-          <Input.FieldSelect {...register("region")}>
-            <option value="" disabled>
-              Selecione sua Região
-            </option>
+          <Input.FieldSelect {...register("region")} defaultValue="">
+            <option value="">Selecione sua Região</option>
 
             {handleOptionsInSelect(formInfo.regions)}
           </Input.FieldSelect>
@@ -103,6 +101,7 @@ export const PersonalInfo = ({ formInfo }: { formInfo: FormInfoProps }) => {
           <Input.FieldSelect
             {...register("city")}
             disabled={!regionWasSelected}
+            defaultValue=""
           >
             <option value="" disabled>
               {regionWasSelected

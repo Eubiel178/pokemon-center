@@ -28,7 +28,7 @@ export const Availability = ({ formInfo }: { formInfo: FormInfoProps }) => {
         <Input.Label htmlFor="scheduledDate">Data para Atendimento</Input.Label>
 
         <Input.Wrapper>
-          <Input.FieldSelect {...register("scheduledDate")}>
+          <Input.FieldSelect {...register("scheduledDate")} defaultValue="">
             <option value="" disabled>
               Selecione uma data
             </option>
@@ -46,7 +46,7 @@ export const Availability = ({ formInfo }: { formInfo: FormInfoProps }) => {
         </Input.Label>
 
         <Input.Wrapper>
-          <Input.FieldSelect {...register("scheduledHours")}>
+          <Input.FieldSelect {...register("scheduledHours")} defaultValue="">
             <option value="" disabled>
               Selecione uma hora
             </option>

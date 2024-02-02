@@ -68,7 +68,10 @@ export const TeamRegistration = ({ formInfo }: { formInfo: FormInfoProps }) => {
                 Pokemon 0{index + 1}
               </Input.Label>
 
-              <Input.FieldSelect {...register(`team.${index}.pokemon`)}>
+              <Input.FieldSelect
+                {...register(`team.${index}.pokemon`)}
+                defaultValue=""
+              >
                 <option value="" disabled>
                   Selecione seu Pokemon
                 </option>
