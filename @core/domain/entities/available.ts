@@ -12,10 +12,11 @@ export class Available {
     this.date = props.date;
   }
 
-  public toJson() {
-    return {
-      time: this.time,
-      date: this.date,
-    };
+  getTime() {
+    return this.time;
+  }
+
+  getDate() {
+    return this.date;
   }
 }

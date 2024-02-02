@@ -12,6 +12,14 @@ export class Pokemon {
     this.id = props.id;
   }
 
+  public getName() {
+    return this.name;
+  }
+
+  public getId() {
+    return this.id;
+  }
+
   public toJson() {
     return {
       id: this.id,
