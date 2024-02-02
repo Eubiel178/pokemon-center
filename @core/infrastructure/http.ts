@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const apiLocal = `${process.env.API_LOCAL}/api`;
-
 export const http = axios.create({
-  baseURL: apiLocal,
+  baseURL: process.env.NEXT_PUBLIC_API_LOCAL,
 });
