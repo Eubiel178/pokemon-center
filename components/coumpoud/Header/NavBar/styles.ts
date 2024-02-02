@@ -18,7 +18,7 @@ export const NavItem = styled.li`
 
 export const NavItemHighlight = styled(NavItem)`
   border-radius: 1.875rem;
-  padding: 0.4375rem 0.8125rem;
+  padding: 0.75rem 1.5rem;
 
   background-color: ${(props) => props.theme.colors.primary};
 

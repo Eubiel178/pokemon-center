@@ -16,7 +16,7 @@ export const Container = styled.section`
 
 export const Title = styled.h2`
   text-align: center;
-  max-width: 27.625rem;
+  max-width: 31.8125rem;
   width: 100%;
   padding: 0 1.5625rem;
 `;
