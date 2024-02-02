@@ -10,6 +10,8 @@ const Document = () => {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
           rel="stylesheet"
         ></link>
+
+        <title>Centro Pokemon</title>
       </Head>
       <body>
         <Main />
