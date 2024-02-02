@@ -2,9 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import { ResetStyle } from "./ResetStyle";
 
 export const GlobalStyle = createGlobalStyle`
-  ${ResetStyle}
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-  
+  ${ResetStyle}  
 
   :root {
     --content-width:clamp( 85vw,85vw,1440px);
