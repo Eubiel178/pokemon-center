@@ -1,7 +1,6 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { Registry, container } from "@/@core/infrastructure/inversify.config";
 
 import {
@@ -14,8 +13,6 @@ import { formatToJson } from "@/utils";
 
 import { InfoBox } from "@/components/atoms/InfoBox";
 import { SchedulingForm } from "@/components/templates/scheduling/SchedulingForm";
-import { Button, ModalToast } from "@/components/atoms";
-import Image from "next/image";
 
 type FormItem = {
   name: string;
