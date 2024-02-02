@@ -50,3 +50,5 @@ export const Button = ({
     </S.Container>
   );
 };
+
+Button.displayName = "Button";

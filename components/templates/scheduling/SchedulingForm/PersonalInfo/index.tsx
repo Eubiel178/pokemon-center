@@ -162,3 +162,5 @@ export const PersonalInfo = ({ formInfo }: { formInfo: FormInfoProps }) => {
     </S.Fieldset>
   );
 };
+
+PersonalInfo.displayName = "PersonalInfo";

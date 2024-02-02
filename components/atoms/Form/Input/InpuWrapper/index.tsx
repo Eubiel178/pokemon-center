@@ -27,3 +27,5 @@ export const InpuWrapper = ({
     </S.Container>
   );
 };
+
+InpuWrapper.displayName = "InpuWrapper";

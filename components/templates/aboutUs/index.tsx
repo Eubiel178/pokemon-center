@@ -16,3 +16,5 @@ export const AboutUsTemplate = () => {
     </>
   );
 };
+
+AboutUsTemplate.displayName = "AboutUsTemplate";

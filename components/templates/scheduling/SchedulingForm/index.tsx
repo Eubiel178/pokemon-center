@@ -112,3 +112,5 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
     </S.Container>
   );
 };
+
+SchedulingForm.displayName = "SchedulingForm";

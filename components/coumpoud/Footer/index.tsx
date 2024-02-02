@@ -10,3 +10,5 @@ export const Footer = () => {
     </S.Container>
   );
 };
+
+Footer.displayName = "Footer";

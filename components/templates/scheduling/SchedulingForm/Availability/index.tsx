@@ -60,3 +60,5 @@ export const Availability = ({ formInfo }: { formInfo: FormInfoProps }) => {
     </S.Fieldset>
   );
 };
+
+Availability.displayName = "Availability";

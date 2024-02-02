@@ -14,3 +14,5 @@ export const InputRoot = ({
     </InputRootProvider>
   );
 };
+
+InputRoot.displayName = "InputRoot";
