@@ -54,15 +54,6 @@ export const PersonalInfo = ({ formInfo }: { formInfo: FormInfoProps }) => {
 
           setCityList(citiesListFormatted);
         } catch (error: any) {
-          const toastStyles = {
-            borderColor: "#DF8686",
-            borderWidth: "0.0625rem",
-            borderStyle: "solid",
-            width: "25.5rem",
-            height: "15.9375rem",
-            padding: ".625rem",
-          };
-
           toast(
             <ModalToast.Root>
               <ModalToast.Title>
@@ -95,7 +86,6 @@ export const PersonalInfo = ({ formInfo }: { formInfo: FormInfoProps }) => {
 
             {
               position: "top-center",
-              style: toastStyles,
               autoClose: false,
               hideProgressBar: true,
               closeOnClick: false,

@@ -29,7 +29,6 @@ export interface FormInfoProps {
   };
   pokemons: FormItem[];
   regions: FormItem[];
-  error?: string;
 }
 
 const Scheduling = ({
@@ -56,6 +55,15 @@ const Scheduling = ({
         draggable
         pauseOnHover
         theme="light"
+        style={{ width: "auto" }}
+        toastStyle={{
+          borderColor: "#DF8686",
+          borderWidth: "0.0625rem",
+          borderStyle: "solid",
+          width: "25.5rem",
+          height: "15.9375rem",
+          padding: ".625rem",
+        }}
       />
     </>
   );

@@ -32,12 +32,6 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
   });
 
   const handleOnSubmit = (data: FormData) => {
-    const toastStyles = {
-      borderColor: "#DF8686",
-      borderWidth: "0.0625rem",
-      borderStyle: "solid",
-    };
-
     try {
       methods.reset();
 
@@ -46,8 +40,8 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
           <ModalToast.Title>Agendamento concluído</ModalToast.Title>
 
           <ModalToast.Text>
-            Seu agendamento para dia {data.scheduledDate}, às
-            {data.scheduledHours}, para {data.team?.length} pokémons foi
+            Seu agendamento para dia {data.scheduledDate} às{" "}
+            {data.scheduledHours}, para {data.team?.length} pokémon foi
             realizado com sucesso!
           </ModalToast.Text>
 
@@ -57,7 +51,6 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
         </ModalToast.Root>,
         {
           position: "top-center",
-          style: toastStyles,
           autoClose: 5000,
           hideProgressBar: true,
           closeOnClick: true,
@@ -75,17 +68,20 @@ export const SchedulingForm = ({ formInfo }: { formInfo: FormInfoProps }) => {
 
           <Image src="/warning.svg" alt="warning" width={41} height={41} />
 
-          <Button onClick={() => methods.reset()}>
+          <Button
+            onClick={() => {
+              methods.reset();
+              toast.dismiss();
+            }}
+          >
             Fazer Novo Agendamento
           </Button>
         </ModalToast.Root>,
-
         {
           position: "top-center",
-          style: toastStyles,
-          autoClose: 5000,
+          autoClose: false,
           hideProgressBar: true,
-          closeOnClick: true,
+          closeOnClick: false,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
