@@ -1,7 +1,7 @@
-interface AvailableProps {
+type AvailableProps = {
   time: string[];
   date: string[];
-}
+};
 
 export class Available {
   time: string[];
@@ -12,11 +12,11 @@ export class Available {
     this.date = props.date;
   }
 
-  getTime() {
+  public getTime() {
     return this.time;
   }
 
-  getDate() {
+  public getDate() {
     return this.date;
   }
 }

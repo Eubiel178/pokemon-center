@@ -1,7 +1,7 @@
-interface PokemonProps {
+type PokemonProps = {
   id: string;
   name: string;
-}
+};
 
 export class Pokemon {
   id: string;

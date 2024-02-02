@@ -12,3 +12,5 @@ export const InputFieldSelect = forwardRef<
     </S.Select>
   );
 });
+
+InputFieldSelect.displayName = "InputFieldSelect";

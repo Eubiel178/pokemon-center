@@ -7,3 +7,5 @@ export const InputErrorText = ({}: React.ComponentProps<"p">) => {
 
   return <>{thereIsError && <S.Text>{sharedProps.error}</S.Text>}</>;
 };
+
+InputErrorText.displayName = "InputErrorText";

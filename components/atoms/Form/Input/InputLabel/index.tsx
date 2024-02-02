@@ -11,3 +11,5 @@ export const InputLabel = ({
     </S.Label>
   );
 };
+
+InputLabel.displayName = "InputLabel";
